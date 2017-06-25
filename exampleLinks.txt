@@ -1,0 +1,5 @@
+http://www.nytimes.com/services/xml/rss/index.html
+http://feeds.reuters.com/news/artsculture
+http://rss.nytimes.com/services/xml/rss/nyt/World.xml
+http://rss.nytimes.com/services/xml/rss/nyt/Business.xml
+http://www.techmeme.com/feed.xml
