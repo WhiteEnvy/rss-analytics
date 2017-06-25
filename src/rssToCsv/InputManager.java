@@ -14,7 +14,7 @@ public class InputManager {
 
 	public static void init () {	
 		
-		if(EmailSender.UserName.isEmpty() || EmailSender.Password.isEmpty() || EmailSender.Recipient.isEmpty()){
+		if(EmailSender.Recipient.isEmpty()){
 			System.out.println("\nWelcome! For correct work this application please add mails for report system\n\n");
 			addMailAddress();
 		}
@@ -51,21 +51,9 @@ public class InputManager {
 	}
 	
 	private static void addMailAddress() {
-		System.out.print("Enter system (sender) email address:");
-		String emailFrom = sc.nextLine();
-		
-		System.out.print("Enter password:");
-		String password = sc.nextLine();
-		
 		System.out.print("Enter email of receiver:");
 		String receiver = sc.nextLine();
 		
-		if(!emailFrom.isEmpty()){
-			EmailSender.UserName = emailFrom;
-		}
-		if(!password.isEmpty()){
-			EmailSender.Password = password;
-		}
 		if(!receiver.isEmpty()){
 			EmailSender.Recipient = receiver;
 		}
@@ -74,7 +62,7 @@ public class InputManager {
 				BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(file, "UTF8"));
 				PrintWriter out = new PrintWriter(bw)) {
 
-			out.println(EmailSender.UserName+"\t" + EmailSender.Password + "\t" + EmailSender.Recipient);
+			out.println(EmailSender.Recipient);
 
 			file.flush();
 

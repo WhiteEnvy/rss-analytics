@@ -18,16 +18,13 @@ import rssToCsv.Models.EmailModel;
 
 public class EmailSender {
 
-	public static String UserName = "";
-	public static String Password = "";
+	public static String UserName = "java.projet.idsm@gmail.com";
+	public static String Password = "javaidsm";
 	public static String Recipient = "";
 	
 	public static void getConfig() {
 		if(FileManager.isFileOrDirectoryExists("config.csv")){
 			List<String[]> items = CsvReader.parse("config.csv", "\t");
-			
-			UserName = items.get(0)[0];
-			Password = items.get(0)[0];
 			Recipient = items.get(0)[0];
 		}
 	}
