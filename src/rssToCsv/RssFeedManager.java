@@ -54,7 +54,9 @@ public class RssFeedManager {
 			CsvReader.updateFile(obj, true);
 		}
 
-		RssReader.rssDoc.close();
+		if(RssReader.rssDoc != null){
+			RssReader.rssDoc.close();
+		}		
 	}
 
 }
