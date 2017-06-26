@@ -11,7 +11,6 @@ public class RssItem {
 	String allData;
 	
 	public RssItem(String title, String description, String date, String rss, String source, String author, String link) {
-		super();
 		this.title = title;
 		this.description = description;
 		this.date = date;
@@ -19,7 +18,7 @@ public class RssItem {
 		this.source = source;
 		this.author = author;
 		this.link = link;
-		this.allData = title + "\t" + description + "\t" + date + "\t" + rss + "\t" + source + "\t" + author+ "\t" + link+ "\t";;
+		this.allData = title + "\t" + description + "\t" + date + "\t" + rss + "\t" + source + "\t" + author+ "\t" + link+ "\t";
 	}
 
 	@Override

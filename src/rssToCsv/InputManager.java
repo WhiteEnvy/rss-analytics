@@ -120,6 +120,7 @@ public class InputManager {
 		String name;
 		String source;
 		String interval;
+		int updateTime = currentInterval;
 		
 		System.out.print("Enter new name or press 'Enter' for skip:");
 		name = sc.nextLine().trim();
@@ -127,6 +128,15 @@ public class InputManager {
 		source = sc.nextLine().trim();
 		System.out.print("Enter new interval or press 'Enter' for skip:");
 		interval = sc.nextLine();
+		
+		if(interval.isEmpty() == false){
+			try{
+				updateTime = Integer.parseInt(interval);
+			}
+			catch (Exception e) {
+				System.out.println("Please enter number. Old value was setted");
+			}			
+		}
 		
 		RssLink obj = RSSLinkManager.getLinkByName(name);
 		
@@ -143,9 +153,7 @@ public class InputManager {
 		if(source.isEmpty() == false){
 			rssData.setSource(source);
 		}
-		if(interval.isEmpty() == false){
-			rssData.setUpdateTime(Integer.parseInt(interval));
-		}		
+		rssData.setUpdateTime(updateTime);		
 		
 		rssData.updateAllData();		
 		RSSLinkManager.saveLinksToFile();
@@ -183,7 +191,7 @@ public class InputManager {
 		}
 		
 		System.out.println("Source: " + obj.getSource());		
-		System.out.println("Update interval" + obj.getUpdateTime());
+		System.out.println("Update interval: " + obj.getUpdateTime());
 		System.out.println("Last update: " + obj.getLastUpdate());
 		
 		System.out.println("For continue - press 'Enter'");
@@ -204,16 +212,22 @@ public class InputManager {
 		source = sc.nextLine().trim();
 		System.out.print("Enter interval (optional) or press 'Enter':");
 		userInterval = sc.nextLine();
+		
+		if(userInterval.isEmpty() == false){
+			try{
+				updateTime = Integer.parseInt(userInterval);
+			}
+			catch (Exception e) {
+				System.out.println("Please enter number. Default value was setted");
+			}
+		}
+		
 		System.out.print("Enter file name:");
 		fileName = sc.nextLine();
 		
 		RssLink obj = RSSLinkManager.getLinkByName(name);
 		
-		if(obj == null){			
-			if(userInterval.isEmpty() == false){
-				updateTime = Integer.parseInt(userInterval);
-			}
-			
+		if(obj == null){
 			RSSLinkManager.addLink(name, source, updateTime, fileName);	
 		}
 		else{

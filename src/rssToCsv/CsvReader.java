@@ -63,21 +63,23 @@ public class CsvReader {
 		String folderName = link.getFileFolder();
 		FileManager.createFolder(folderName);
 		String fileName = link.getCurrentFileName();
+		String header = "title\tdescription\tdate\trss\tsource\tauthor\tlink";
+		DateFormat formatter = new SimpleDateFormat("MM_dd_yyyy HH_mm");
 
 		for (int i = 0; i < RssReader.csvArr.size(); i++) {
 			File currentFile = new File(folderName + "/" + fileName);
 			if (currentFile.length() < 1000) {
 				try (FileOutputStream file = new FileOutputStream(folderName + "/" + fileName, true);
 						BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(file, "UTF8"));
-						PrintWriter out = new PrintWriter(bw)) {
+						PrintWriter pw = new PrintWriter(bw)) {
 
 					if (isNewFile == true) {
 						isNewFile = false;
-						String header = "title\tdescription\tdate\trss\tsource\tauthor\tlink";
-						out.println(header);
+						
+						pw.println(header);
 					}
 
-					out.println(RssReader.csvArr.get(i).allData);
+					pw.println(RssReader.csvArr.get(i).allData);
 
 					file.flush();
 
@@ -86,8 +88,6 @@ public class CsvReader {
 				}
 			} else {
 				long countFiles = Files.list(Paths.get(folderName)).count();
-
-				DateFormat formatter = new SimpleDateFormat("MM_dd_yyyy HH_mm");
 				Date d = new Date();
 				fileName = link.getOriginalFileName() + "_" + (countFiles + 1) + "_" + formatter.format(d) + ".csv";
 				FileManager.createFile(folderName + "/" + fileName);
@@ -97,12 +97,10 @@ public class CsvReader {
 
 				try (FileOutputStream file = new FileOutputStream(folderName + "/" + fileName, true);
 						BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(file, "UTF8"));
-						PrintWriter out = new PrintWriter(bw)) {
+						PrintWriter pw = new PrintWriter(bw)) {
 
-					String header = "title\tdescription\tdate\trss\tsource\tauthor\tlink";
-					out.println(header);
-
-					out.println(RssReader.csvArr.get(i).allData);
+					pw.println(header);
+					pw.println(RssReader.csvArr.get(i).allData);
 
 					file.flush();
 

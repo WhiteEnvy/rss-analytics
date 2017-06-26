@@ -38,7 +38,6 @@ public class RssLink {
 	}
 	
 	public RssLink(String name, String source, int updateTime, long lastUpdate, String OriginalFileName, String currentFileName) {
-		super();
 		this.name = name;
 		this.source = source;
 		this.updateTime = updateTime;
